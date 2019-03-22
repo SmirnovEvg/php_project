@@ -9,15 +9,25 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Add forum</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
-    <form method='POST'>
-        <input type="text" name='post_name'>
-        <input type="text" name='post_content'>
-        <input type="text" name='post_language'>
-        <input type="submit" name='add'>
-    </form>
+    <div class="container">
+        <?php
+        include('../header_footer/header_not_auth.php')
+        ?>
+        <form method='POST' class='add_post_form'>
+            <label>Название</label><input type="text" class='add_post_name' name='post_name'>
+            <label>Язык</label><input type="text" class='add_post_language' name='post_language'>
+            <label>Наполнение</label><textarea type="text" class='add_post_content' name='post_content'></textarea>
+            <input type="submit" class='add_post_submit' name='add'>
+        </form>
+    </div>
+    <?php
+    include('../header_footer/footer.html')
+    ?>
 </body>
 
 </html>
@@ -37,6 +47,27 @@ $language = $_POST['post_language'];
 $query_name = "INSERT INTO `post`(`name`, `content`, `language`, `type`) VALUES ('$name', '$content', '$language', 'news')";
 
 if (isset($_POST['add'])) {
-    mysqli_query($link, $query_name) or die("Ошибка " . mysqli_error($link));
+    $name = stripslashes($name);
+    $name = htmlspecialchars($name);
+    $content = stripslashes($content);
+    $content = htmlspecialchars($content);
+    $name = trim($name);
+    $content = trim($content);
+    if (empty($name) || empty($content) || empty($language)) {
+        echo "<script>alert('Вы ввели не всю информацию. Все поля должны быть заполнены')</script>";
+        mysqli_close($link);
+    }
+    elseif(!preg_match("~[a-zA-Z\d]{5,}~", $name)) {
+        echo "<script>alert('Некорректное имя.')</script>";
+        mysqli_close($link);
+    }
+    elseif(!preg_match("~[0-9A-Za-z!@#$%]{5,}~", $name)) {
+        echo "<script>alert('Некорректное содержимое.')</script>";
+        mysqli_close($link);
+    }
+    else{
+        mysqli_query($link, $query_name);
+        echo "<script>location.pathname='/DBlog/newsPage/news.php'</script>";
+    }
 }
 ?> 

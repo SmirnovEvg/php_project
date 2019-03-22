@@ -9,11 +9,15 @@ $url = explode('?', $url)[1];
 $user_id = $_SESSION['id'];
 $comment_text = $_POST['comment_text'];
 $child_comment_text = $_POST['child_comment_text'];
+
 $query_name = "SELECT forum.`name`, forum.`text`, user.`name`, forum.`date` FROM `forum` inner join `user` on forum.`user_id` = user.`user_id` WHERE forum.`forum_id`='$url'";
 $result_name = mysqli_query($link, $query_name) or die("Ошибка " . mysqli_error($link));
+
 $query_comment = "SELECT comment.`comment`, user.`name`, comment.`date`, user.`admin`, comment.`comment_id` FROM `comment` inner join `user` on comment.`user_id` = user.`user_id` WHERE comment.`forum_id`='$url' order by comment.`date`";
 $result_comment = mysqli_query($link, $query_comment) or die("Ошибка " . mysqli_error($link));
+
 $query_comment = "INSERT INTO `comment`(`forum_id`, `user_id`, `comment`) VALUES ('$url', '$user_id','$comment_text')";
+
 if (isset($_POST['comment_submit'])) {
     mysqli_query($link, $query_comment) or die("Ошибка " . mysqli_error($link));
 }
@@ -44,6 +48,7 @@ if ($result_name) {
             $row_comment = mysqli_fetch_row($result_comment);
             $comment = $row_comment[4];
             echo "<div class='forum_comment'>";
+            echo "<div class='forum_comment_main'>";
             echo "<div class='forum_comment_image'>";
             if ($row_comment[3] == 1) {
                 echo "<img src='https://img.icons8.com/ios/100/000000/businessman-filled.png'/>";
@@ -60,7 +65,6 @@ if ($result_name) {
             echo $row_comment[2];
             echo "</div>";
             echo "<div class='forum_comment_content_user_answer'>";
-            echo "<span id='answer_button$comment'>Ответить</span>";
             echo "</div>";
             echo "</div>";
             echo "<div class='forum_comment_content_answer'>";
@@ -68,15 +72,21 @@ if ($result_name) {
             echo "</div>";
             echo "</div>";
             echo "</div>";
+
+
             $query_child_comment = "SELECT child_comment.`child_comment_text`, user.`name`, child_comment.`date`, user.`admin` FROM `child_comment` inner join `user` on child_comment.`user_id` = user.`user_id` WHERE child_comment.`comment_id`=$comment";
             $result_child_comment = mysqli_query($link, $query_child_comment) or die("Ошибка " . mysqli_error($link));
+
             $child_query_comment = "INSERT INTO `child_comment`(`comment_id`, `user_id`, `child_comment_text`) VALUES ('$comment', '$user_id','$child_comment_text')";
-          
+
             if (isset($_POST['child_comment_submit'])) {
                 mysqli_query($link, $child_query_comment) or die("Ошибка " . mysqli_error($link));
             }
             if ($result_child_comment) {
                 $rows_child_comment = mysqli_num_rows($result_child_comment);
+                echo "<input type='checkbox' id='hd-$comment' class='hide'/>";
+                echo "<label for='hd-$comment' >Просмотреть ответы</label>";
+                echo "<div class='forum_child_comment_block'>";
                 for ($l = 0; $l < $rows_child_comment; ++$l) {
                     $row_child_comment = mysqli_fetch_row($result_child_comment);
                     echo "<div class='forum_child_comment'>";
@@ -108,11 +118,13 @@ if ($result_name) {
                     echo "<input type='submit' name='child_comment_submit' value='Отправить' class='forum_child_comment_form_button'/></form>";
                     echo "</div>";
                 }
+                echo "</div>";
+                echo "</div>";
             }
         }
     }
-    echo "</div>";
 }
+echo "</div>";
 if ($_SESSION['login'] == !'') {
     echo "<div class='forum_comment_form'>";
     echo "<form method='POST'><textarea id='comment' name='comment_text'></textarea>";
@@ -127,6 +139,7 @@ if ($_SESSION['login'] == !'') {
     $(document).on("click", "#code", function() {
         code();
     });
+
     function code() {
         if (text.selectionStart != undefined) {
             var startPos = text.selectionStart;
@@ -151,6 +164,7 @@ if ($_SESSION['login'] == !'') {
             }
         })
     });
+
     function getCaret(el) {
         if (el.selectionStart) {
             return el.selectionStart;
@@ -168,5 +182,8 @@ if ($_SESSION['login'] == !'') {
         }
         return 0;
     }
-    
+
+    document.getElementById('hide6').addEventListener('click', function() {
+        alert('HI')
+    });
 </script> 

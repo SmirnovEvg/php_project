@@ -105,5 +105,4 @@ if (isset($_GET[$url])) {
 }
 
 mysqli_close($link);
-?>
- 
+?> 

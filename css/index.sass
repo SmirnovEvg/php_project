@@ -85,6 +85,8 @@ body, html
     font-size: 0.9em
     & img 
         margin: 0 3px 7px 0
+    &_block
+        min-height: 60vh
 
 .page
     &_headline
@@ -101,6 +103,7 @@ body, html
         font-family: poiret
         font-size: 1.5em
         text-align: justify
+        min-height: 40vh
     &_likes
         font-size: 0.8em
         display: flex
@@ -124,6 +127,41 @@ body, html
     display: flex
     flex-direction: column
     justify-content: center
+    min-height: 70vh
+    text-align: center
+    font-family: poiret
+    & input[type='text']
+        border-radius: 15px
+        border: 1px solid $darkGray
+        background-color: #f9faf5
+        width: 300px
+        margin: 0 auto
+        padding: 2px 15px 3px 15px
+        font-family: poiret
+        margin-bottom: 10px
+    & input[type='password']
+        border-radius: 15px
+        border: 1px solid $darkGray
+        background-color: #f9faf5
+        width: 300px
+        margin: 0 auto
+        padding: 2px 15px 3px 15px
+        font-family: poiret
+        margin-bottom: 10px
+    & input[type='submit']
+        border-radius: 15px
+        border: 1px solid $lightGray
+        background-color: $lightGray
+        width: 300px
+        margin: 0 auto
+        padding: 2px 15px 3px 15px
+        font-family: poiret
+        margin-bottom: 10px
+    & h2
+        margin-bottom: 15px
+    .g-recaptcha
+        margin: 0 auto 10px auto
+        display: block
 
 .navbar-nav
     width: 100%
@@ -264,9 +302,10 @@ body, html
             font-size: 2.4em
             margin-left: 15px
     &_comment
-        display: flex
         border-bottom: 1px solid $pink
         padding: 40px 0
+        &_main
+            display: flex
         &_image
             & img
                 width: 90px
@@ -437,3 +476,131 @@ body, html
     transition: 0.2s all ease
     &:hover
         background-color: $darkGray
+
+.add_post
+    &_form
+        display: flex
+        flex-direction: column
+        justify-content: center
+        min-height: 60vh
+        font-family: poiret
+        font-size: 1.2em
+        & input, textarea
+            border-radius: 15px
+            border: 1px solid $darkGray
+            background-color: #f9faf5
+            font-size: 0.8em
+            padding: 4px 10px 4px 15px
+            margin-bottom: 10px
+    &_name
+        width: 300px
+    &_content
+        width: 400px
+        height: 300px
+    &_language
+        width: 300px
+    &_submit
+        width: 200px
+        margin-top: 20px
+        background-color: $lightGray !important
+        border: 0 !important
+
+footer 
+    background-color: $darkGray
+    height: 200px
+    margin-top: 20px
+    padding-top: 30px
+    font-family: poiret
+    font-size: 1.2em
+
+.news-mailing
+    background-color: $lightGray
+    border-radius: 40px
+    display: flex
+    align-items: center
+    width: 305px
+    padding: 3px 10px 5px 10px
+    margin-top: 15px
+    & input
+        border: 0
+        background-color: $lightGray
+        font-family: poiret
+        width: 240px
+        outline: none !important
+        font-size: 0.9em
+    & button
+        background-color: $lightGray
+        border: 0
+        width: 45px
+        height: auto
+        outline: 0
+        cursor: pointer
+        & img 
+            width: 100%
+            height: auto
+        &:hover
+            opacity: 0.9
+
+.social
+    margin-top: 12px
+    & img
+        width: auto
+        height: 41.45px
+        margin-right: 7px
+        &:hover
+            opacity: 0.9
+
+.contacts
+    font-family: poiret
+    margin-top: 4px
+    font-size: 0.9em
+    & a 
+        color: #000
+        &:hover
+            color: #000
+            text-decoration: none
+    & p 
+        margin-bottom: 0
+
+.formFooter
+    display: flex
+
+.tools
+    display: flex
+
+.delete_post_submit
+    background-color: #d9b2aa !important
+    border: 0 !important
+
+.changeImage
+    width: 20px
+    margin-bottom: 8px
+    margin-left: 5px
+
+.hide 
+    display: none
+    margin-top: 10px
+
+.hide + label ~ .forum_child_comment_block
+    margin-top: 10px
+    display: none
+
+/* оформляем текст label */
+.hide + label 
+    text-align: center
+    margin: 10px 0 0 10px
+    padding: 0px 10px 1px 10px
+    border-radius: 15px
+    font-family: poiret
+    font-size: 1.2em
+    cursor: pointer
+    background-color: $pink
+
+/* вид текста label при активном переключателе */
+.hide:checked + label 
+    color: darken($darkGray, 30%)
+
+/* когда чекбокс активен показываем блоки с содержанием  */
+.hide:checked + label + .forum_child_comment_block 
+    display: block
+    background: #f9faf5

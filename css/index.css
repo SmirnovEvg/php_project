@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "poiret";
   src: url("../font/PoiretOne-Regular.ttf");
@@ -123,6 +124,10 @@ body, html {
   margin: 0 3px 7px 0;
 }
 
+.likes_block {
+  min-height: 60vh;
+}
+
 .page_headline {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -151,6 +156,7 @@ body, html {
   font-family: poiret;
   font-size: 1.5em;
   text-align: justify;
+  min-height: 40vh;
 }
 
 .page_likes {
@@ -189,6 +195,51 @@ body, html {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+  min-height: 70vh;
+  text-align: center;
+  font-family: poiret;
+}
+
+.register_form input[type='text'] {
+  border-radius: 15px;
+  border: 1px solid #ccd0d7;
+  background-color: #f9faf5;
+  width: 300px;
+  margin: 0 auto;
+  padding: 2px 15px 3px 15px;
+  font-family: poiret;
+  margin-bottom: 10px;
+}
+
+.register_form input[type='password'] {
+  border-radius: 15px;
+  border: 1px solid #ccd0d7;
+  background-color: #f9faf5;
+  width: 300px;
+  margin: 0 auto;
+  padding: 2px 15px 3px 15px;
+  font-family: poiret;
+  margin-bottom: 10px;
+}
+
+.register_form input[type='submit'] {
+  border-radius: 15px;
+  border: 1px solid #e9e9e9;
+  background-color: #e9e9e9;
+  width: 300px;
+  margin: 0 auto;
+  padding: 2px 15px 3px 15px;
+  font-family: poiret;
+  margin-bottom: 10px;
+}
+
+.register_form h2 {
+  margin-bottom: 15px;
+}
+
+.register_form .g-recaptcha {
+  margin: 0 auto 10px auto;
+  display: block;
 }
 
 .navbar-nav {
@@ -407,11 +458,14 @@ body, html {
 }
 
 .forum_comment {
+  border-bottom: 1px solid #aad1d9;
+  padding: 40px 0;
+}
+
+.forum_comment_main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border-bottom: 1px solid #aad1d9;
-  padding: 40px 0;
 }
 
 .forum_comment_image img {
@@ -685,4 +739,188 @@ body, html {
 
 .add_button:hover {
   background-color: #ccd0d7;
+}
+
+.add_post_form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  min-height: 60vh;
+  font-family: poiret;
+  font-size: 1.2em;
+}
+
+.add_post_form input, .add_post_form textarea {
+  border-radius: 15px;
+  border: 1px solid #ccd0d7;
+  background-color: #f9faf5;
+  font-size: 0.8em;
+  padding: 4px 10px 4px 15px;
+  margin-bottom: 10px;
+}
+
+.add_post_name {
+  width: 300px;
+}
+
+.add_post_content {
+  width: 400px;
+  height: 300px;
+}
+
+.add_post_language {
+  width: 300px;
+}
+
+.add_post_submit {
+  width: 200px;
+  margin-top: 20px;
+  background-color: #e9e9e9 !important;
+  border: 0 !important;
+}
+
+footer {
+  background-color: #ccd0d7;
+  height: 200px;
+  margin-top: 20px;
+  padding-top: 30px;
+  font-family: poiret;
+  font-size: 1.2em;
+}
+
+.news-mailing {
+  background-color: #e9e9e9;
+  border-radius: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 305px;
+  padding: 3px 10px 5px 10px;
+  margin-top: 15px;
+}
+
+.news-mailing input {
+  border: 0;
+  background-color: #e9e9e9;
+  font-family: poiret;
+  width: 240px;
+  outline: none !important;
+  font-size: 0.9em;
+}
+
+.news-mailing button {
+  background-color: #e9e9e9;
+  border: 0;
+  width: 45px;
+  height: auto;
+  outline: 0;
+  cursor: pointer;
+}
+
+.news-mailing button img {
+  width: 100%;
+  height: auto;
+}
+
+.news-mailing button:hover {
+  opacity: 0.9;
+}
+
+.social {
+  margin-top: 12px;
+}
+
+.social img {
+  width: auto;
+  height: 41.45px;
+  margin-right: 7px;
+}
+
+.social img:hover {
+  opacity: 0.9;
+}
+
+.contacts {
+  font-family: poiret;
+  margin-top: 4px;
+  font-size: 0.9em;
+}
+
+.contacts a {
+  color: #000;
+}
+
+.contacts a:hover {
+  color: #000;
+  text-decoration: none;
+}
+
+.contacts p {
+  margin-bottom: 0;
+}
+
+.formFooter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.tools {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.delete_post_submit {
+  background-color: #d9b2aa !important;
+  border: 0 !important;
+}
+
+.changeImage {
+  width: 20px;
+  margin-bottom: 8px;
+  margin-left: 5px;
+}
+
+.hide {
+  display: none;
+  margin-top: 10px;
+}
+
+.hide + label ~ .forum_child_comment_block {
+  margin-top: 10px;
+  display: none;
+}
+
+/* оформляем текст label */
+.hide + label {
+  text-align: center;
+  margin: 10px 0 0 10px;
+  padding: 0px 10px 1px 10px;
+  border-radius: 15px;
+  font-family: poiret;
+  font-size: 1.2em;
+  cursor: pointer;
+  background-color: #aad1d9;
+}
+
+/* вид текста label при активном переключателе */
+.hide:checked + label {
+  color: #768194;
+}
+
+/* когда чекбокс активен показываем блоки с содержанием  */
+.hide:checked + label + .forum_child_comment_block {
+  display: block;
+  background: #f9faf5;
 }
